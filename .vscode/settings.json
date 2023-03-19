@@ -1,0 +1,21 @@
+{
+	"files.associations": {
+		"*.php": "php",
+		"vector": "cpp",
+		"initializer_list": "cpp",
+		"xutility": "cpp",
+		"type_traits": "cpp",
+		"exception": "cpp",
+		"tuple": "cpp",
+		"utility": "cpp",
+		"concepts": "cpp",
+		"xmemory": "cpp",
+		"xtr1common": "cpp",
+		"limits": "cpp",
+		"deque": "cpp",
+		"xstring": "cpp",
+		"xtree": "cpp",
+		"xiosbase": "cpp",
+		"queue": "cpp"
+	}
+}
