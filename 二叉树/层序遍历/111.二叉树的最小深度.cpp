@@ -19,6 +19,32 @@
 class Solution
 {
 public:
+    // 递归法
+    // int traversal(TreeNode *node)
+    // {
+    //     if (node == NULL)
+    //     {
+    //         return 0;
+    //     }
+    //     int leftDepth = traversal(node->left);
+    //     int rightDepth = traversal(node->right);
+    //     if (node->left != NULL && node->right == NULL)
+    //     {
+    //         return 1 + leftDepth;
+    //     }
+    //     if (node->left == NULL && node->right != NULL)
+    //     {
+    //         return 1 + rightDepth;
+    //     }
+    //     return 1 + min(leftDepth, rightDepth);
+    // }
+
+    // int minDepth(TreeNode *root)
+    // {
+    //     return traversal(root);
+    // }
+
+    // 迭代法
     int minDepth(TreeNode *root)
     {
         queue<TreeNode *> que;
