@@ -24,17 +24,23 @@ public:
         int final_right = -1;
         // 定义第一次查找的左右
         int left = 0, right = nums.size() - 1;
-        // 注意right才是可能最左target的左边一个位置
+        // 找最左边的target，选择target<=nums[mid]
+        // right是最左target（若有）的左边一个位置
         while (left <= right)
         {
             int mid = left + ((right - left) / 2);
             if (target <= nums[mid])
+            {
                 right = mid - 1;
+            }
             else
+            {
                 left = mid + 1;
+            }
         }
         final_left = right + 1;
-        // 中途判断
+        // final_left判断
+        // 如果超过边界或者找不到这个数，直接返回-1
         if (final_left == nums.size() || target != nums[final_left])
         {
             return vector<int>({-1, -1});
@@ -43,14 +49,19 @@ public:
         {
             // 定义第二次查找的左右
             int left = final_left, right = nums.size() - 1;
-            // 注意left才是可能最右target的左边一个位置
+            // 找最左边的target，选择target>=nums[mid]
+            // left是可能最右target的右边一个位置
             while (left <= right)
             {
                 int mid = left + ((right - left) / 2);
                 if (target >= nums[mid])
+                {
                     left = mid + 1;
+                }
                 else
+                {
                     right = mid - 1;
+                }
             }
             final_right = left - 1;
         }
