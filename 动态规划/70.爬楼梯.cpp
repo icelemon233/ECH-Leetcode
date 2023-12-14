@@ -5,6 +5,9 @@
  */
 
 // @lc code=start
+#include <vector>
+using namespace std;
+
 class Solution
 {
 public:
@@ -24,4 +27,5 @@ public:
         return dp[n];
     }
 };
+
 // @lc code=end
