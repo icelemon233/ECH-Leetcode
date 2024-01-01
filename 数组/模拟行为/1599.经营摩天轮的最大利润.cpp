@@ -5,48 +5,54 @@
  */
 
 // @lc code=start
+#include <vector>
+using namespace std;
+
 class Solution
 {
 public:
-    int minOperationsMaxProfit(vector<int> &customers, int boardingCost, int runningCost)
+    int minOperationsMaxProfit(vector<int> &customers,
+                               int boardingCost,
+                               int runningCost)
     {
-        // 等待的游客
-        int wait_list = 0;
-        // 已经登舱的游客
-        int cus_list = 0;
-        // 轮转次数
-        int rorate = 0;
-        // int board_list = 0;
-        // 利润
-        int max_income = 0;
-        // 最小次数
-        int ret = 0;
-        while (wait_list > 0 || rorate < customers.size())
+        // 等待游客人数和已登舱游客人数
+        int waiting_list = 0, served_list = 0;
+        // 当前已轮转次数和最小轮转次数
+        int rorate = 0, min_rorate = -1;
+        // 总利润
+        int total_income = 0, max_income = 0;
+        // 模拟：先遍历customers，如果还有剩下的游客也进行同样的计算
+        for (auto &customer: customers)
         {
-            if (rorate < customers.size())
-            {
-                wait_list += customers[rorate];
-            }
-            if (wait_list >= 4)
-            {
-                wait_list -= 4;
-                cus_list += 4;
-                // board_list++;
-            }
-            else
-            {
-                cus_list += wait_list;
-                wait_list = 0;
-            }
+            // 游客抵达
+            waiting_list += customer;
+            // 登舱，并记录轮转一次
+            total_income += min(waiting_list, 4) * boardingCost - runningCost;
+            waiting_list -= min(waiting_list, 4);
             rorate++;
-            int income = cus_list * boardingCost - rorate * runningCost;
-            if (income > max_income)
+            // 记录最大利润
+            if (total_income > max_income)
             {
-                max_income = income;
-                ret = rorate;
+                max_income = total_income;
+                min_rorate = rorate;
             }
         }
-        return ret == 0 ? -1 : ret;
+        while (waiting_list > 0)
+        {
+            // 剩余游客的计算
+            // 登舱，并记录轮转一次
+            total_income += min(waiting_list, 4) * boardingCost - runningCost;
+            waiting_list -= min(waiting_list, 4);
+            rorate++;
+            // 记录最大利润
+            if (total_income > max_income)
+            {
+                max_income = total_income;
+                min_rorate = rorate;
+            }
+        }
+        return min_rorate;
     }
 };
+
 // @lc code=end
