@@ -25,9 +25,7 @@ public:
     void add(int left, int right)
     {
         // 遍历所有被 [left,right] 覆盖到的区间（部分覆盖也算）
-        for (auto it = m.lower_bound(left);
-             it != m.end() && it->second <= right;
-             m.erase(it++))
+        for (auto it = m.lower_bound(left); it != m.end() && it->second <= right; m.erase(it++))
         {
             int l = it->second, r = it->first;
             // 合并后的新区间，其左端点为所有被覆盖的区间的左端点的最小值
